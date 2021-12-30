@@ -24,7 +24,7 @@ cd ~/
 
 git clone https://github.com/reselbob/datagen.git
 
-cd ./datagen/big-data-json/å
+cd ./datagen/big-data-json/
 
 npm install
 
