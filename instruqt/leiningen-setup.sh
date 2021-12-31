@@ -4,9 +4,6 @@
 
 sudo apt update -y && sudo apt install default-jdk -y && sudo apt install tree -y
 
-
-
-
 # Install Lienengen
 
 wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
