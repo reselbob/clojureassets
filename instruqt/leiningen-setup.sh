@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Install the jq Javascript parsing utility
+
+sudo apt-get install -y jq
+
 # Install Java
 
 sudo apt update -y && sudo apt install default-jdk -y && sudo apt install tree -y
