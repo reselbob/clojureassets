@@ -7,4 +7,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (def all-records (clojure.data.json/read-str (slurp "/root/data/big-data.json")))
+  (println all-records))
