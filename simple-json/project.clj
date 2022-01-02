@@ -7,6 +7,6 @@
                  [org.clojure/data.json "2.4.0"]]
   :main ^:skip-aot simple-json.core
   :target-path "target/%s"
-  :jvm-opts ["-Xmx1G"]
+  :jvm-opts ["-Xmx1g"]
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
