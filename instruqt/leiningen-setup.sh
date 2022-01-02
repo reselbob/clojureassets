@@ -34,7 +34,7 @@ npm install
 
 chmod +x data-gen.js
 
-# Create a file named big-data.json that has an array of 2 million JSON objects
+# Create a file named big-data.json that has an array of 2 hundred thousand JSON objects
 
 ./data-gen.js 2
 
