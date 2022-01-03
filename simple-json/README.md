@@ -21,3 +21,5 @@ The  program is intended to run within the [Leiningen](https://leiningen.org/) f
 
 `lein run ~/data/big-data.json`
 
+**PS:** Don't forget the generate the data first!
+
