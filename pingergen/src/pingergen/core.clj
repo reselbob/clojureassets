@@ -4,7 +4,6 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer :all]
             [clojure.pprint :as pp]
-            [clojure.string :as str]
             [clojure.data.json :as json]
             [pingergen.mem :as mem])
   (:gen-class))
@@ -23,7 +22,7 @@
              (pp/pprint req)
              (str "Request Object: " req))})
 
-; Hello-name handler
+; Return a simple string
 (defn ping-handler [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
