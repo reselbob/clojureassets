@@ -5,7 +5,8 @@
             [ring.middleware.defaults :refer :all]
             [clojure.pprint :as pp]
             [clojure.string :as str]
-            [clojure.data.json :as json])
+            [clojure.data.json :as json]
+            [clj-memory-meter.core :as mm])
   (:gen-class))
 
 ; Simple Body Page
@@ -14,8 +15,8 @@
    :headers {"Content-Type" "text/html"}
    :body    "Hello World"})
 ;
-; request-example
-(defn request-example [req]
+; request-handler
+(defn request-handler [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
    :body    (->
@@ -23,12 +24,12 @@
              (str "Request Object: " req))})
 
 ; Hello-name handler
-(defn hello-name [req]
+(defn ping-handler [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
    :body    (->
              (pp/pprint req)
-             (str "Hello " (:name (:params req))))})
+             (str "Ping at " (.toString (java.util.Date.))))})
 
 ; my people-collection mutable collection vector
 (def people-collection (atom []))
@@ -43,7 +44,7 @@
 (addperson "Micky" "Mouse")
 
 ; Return List of People
-(defn people-handler [req]
+(defn memory-handler [req]
   {:status  200
    :headers {"Content-Type" "text/json"}
    :body    (str (json/write-str @people-collection))})
@@ -52,20 +53,20 @@
 (defn getparameter [req pname] (get (:params req) pname))
 
 ; Add a new person into the people-collection
-(defn addperson-handler [req]
+(defn envars-handler [req]
   {:status  200
    :headers {"Content-Type" "text/json"}
-   :body    (-> (let [p (partial getparameter req)]
-                  (str (json/write-str (addperson (p :firstname) (p :surname))))))})
+   :body    (-> (pp/pprint (System/getenv)) 
+             (str (json/write-str (System/getenv))))})
 
 ; Our main routes
 (defroutes app-routes
   (GET "/" [] simple-body-page)
-  (GET "/request" [] request-example)
-  (GET "/hello" [] hello-name)
-  (GET "/people" [] people-handler)
-  (GET "/people/add" [] addperson-handler)
-  (route/not-found "Error, page not found!"))
+  (GET "/request" [] request-handler)
+  (GET "/ping" [] ping-handler)
+  (GET "/memory" [] memory-handler)
+  (GET "/envars" [] envars-handler)
+  (route/not-found "Error, API endpoint not found!"))
 
 ; Our main entry function
 (defn -main
