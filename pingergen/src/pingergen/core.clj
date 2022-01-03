@@ -6,7 +6,8 @@
             [clojure.pprint :as pp]
             [clojure.string :as str]
             [clojure.data.json :as json]
-            [clj-memory-meter.core :as mm])
+            [clj-memory-meter.core :as mm]
+            [pingergen.mem :as mem])
   (:gen-class))
 
 ; Simple Body Page
@@ -47,7 +48,8 @@
 (defn memory-handler [req]
   {:status  200
    :headers {"Content-Type" "text/json"}
-   :body    (str (json/write-str @people-collection))})
+   :body    (-> (pp/pprint (mem/get-mem))
+                (str (json/write-str (mem/get-mem))))})
 
 ; Helper to get the parameter specified by pname from :params object in req
 (defn getparameter [req pname] (get (:params req) pname))
