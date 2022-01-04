@@ -41,3 +41,5 @@ chmod +x data-gen.js
 # Copy the file to ~/data/big-data.json
 
 mkdir ~/data && mv big-data.json ~/data/big-data.json
+
+echo "Moved data to ~/data/big-data.json"
