@@ -9,4 +9,3 @@
 (defn get-mem [] {:total-mem total
                   :free-mem free
                   :used-mem used})
-
