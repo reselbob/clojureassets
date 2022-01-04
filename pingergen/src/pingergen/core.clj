@@ -20,7 +20,7 @@
    :headers {"Content-Type" "text/html"}
    :body    (->
              (pp/pprint req)
-             (str "Request Object: " req))})
+             (str req))})
 
 ; Return a simple string
 (defn ping-handler [req]
